@@ -1,0 +1,21 @@
+#main-view {
+    padding-top: 90px;
+    text-align: center;
+}
+
+#main-view h2 { margin-bottom: 1em; }
+
+.missing-field::after {
+    content: 'this field is incorrect'
+    position: absolute;
+    top: 0;
+    color: red;
+    text-transformation:
+
+}
+
+.signup { margin-left: 1.5em; }
+
+.user-panel {}
+
+.avatar { display: inline-block; margin: 0 1.5em; }
