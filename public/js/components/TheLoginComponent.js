@@ -1,77 +1,68 @@
 export default {
-    name: 'TheLoginComponent',
+  name: "TheLoginComponent",
 
-    template: `
-    <section class="container">
-        <div class="jumbotron">
-            <h1>Welcome to Flashblack!</h1>
-            <p class="lead">
-            Before revisiting your favourite movies, tv shows or music from yesteryear, please log in with a valid username and password.
-            </p>
-        </div>
+  template: `
+  <nav>
+  <div class="logo">
+    <h1>
+      <router-link to="/">
+        ROKU
+      </router-link>
+    </h1>
+  </div>
+</nav>
 
-        <section class="log-in">
-            <label class="sr-only" for="inlineFormInputName">Name</label>
-            <input v-model="username" type="text" class="form-control" id="inlineFormInputName" placeholder="username" required>
+<section class="login-section">
+  <h1>SIGN IN</h1>
+  <form @submit.prevent="login">
+    <input v-model="email" placeholder="Email or phone number" class="input" type="text" name="email_or_phone"
+      id="email">
+    <input v-model="password" placeholder="Password" class="input" type="password" name="password" id="password">
+    <input :disabled="btnDisabled" type="submit" value="Sign In">
+    <div class="additional">
+      <div class="input_group">
+        <input v-model="remember" type="checkbox" name="remember_me" id="remember_me">
+        <label for="remember_me">Remember Me</label>
+      </div>
+      <a class="help" href="#">Need Help?</a>
+    </div>
+  </form>
+  <p>New to Roku Flashback? <router-link class="signup" to="/signup">Sign Up now</router-link></p>
+</section>
+<footer class="login-footer">
+  <p>Questions? Call <a href="">952-803-4658</a></p>
+  <ul class="info">
+    <div class="info_section">
+      <li><a href="">FAQ</a></li>
+      <li><a href="">Terms of Use</a></li>
+      <li><a href="">Cookie Preference</a></li>
+    </div>
+    <div class="info_section">
+      <li><a href="">Help Center</a></li>
+      <li><a href="">Privacy</a></li>
+      <li><a href="">Corporate Info</a></li>
+    </div>
+  </ul>
+</footer>`,
 
-            <label class="sr-only" for="inlineFormPassword">Name</label>
-            <input v-model="password" type="password" class="form-control" id="inlineFormPassword" placeholder="password" required>
-        </section>
-
-        <button
-            @click="tryLogIn"
-            type="submit" 
-            class="btn btn-primary login-submit"
-        >Go!
-        </button>
-  </section>`,
-
-  data() {
-   return {
-    username: '',
-    password: '',
-    authenticated: false,
-    signUp: false
-   }
+  computed: {
+    btnDisabled() {
+      return this.email.trim().length < 4 || this.password.trim().length < 4;
+    },
   },
-
+  data() {
+    let email = "";
+    let password = "";
+    let remember = true;
+    return {
+      email,
+      password,
+      remember,
+    };
+  },
   methods: {
-    trySignUp() {debugger; },
-
-    tryLogIn() {
-        // chek to see if there are username and password;
-        // sanitize our inputs, make sure they're not empty etc ""
-        if (this.username.trim().length == 0) { console.log('username input is empty'); }
-        if (this.password.trim().length == 0) { console.log('password input is empty'); }
-
-        let userData = {
-            username: this.username,
-            password: this.password
-        }
-
-        fetch('/ums/login', {
-            method: "POST",
-            body: JSON.stringify(userData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.message == 'no user') {
-                        // check for no user, and then provide a signup button
-                        this.signUp = true;
-
-                } else if (data.message == 'wrong password') {
-                    // password didt'n match, try again
-                    this.$refs['password'].classList.add('missing-field');
-
-                } else {
-                    this.$emit('setauthenticated');
-                    // save the user data locally on our system
-                    window.localStorage.setItem('user', JSON.stringify(data.user));
-                    this.$router.push({ name: 'allusers'});
-                }
-    })
-        .catch(error => console.error(error));
-        //end fetch call
-    }
-  }
-}
+    async login() {
+      console.log(this.email, this.password, this.remember);
+    },
+  },
+};
