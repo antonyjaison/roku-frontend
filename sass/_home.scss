@@ -1,0 +1,47 @@
+.home_wrapper{
+    div{
+        ul{
+            li{
+                padding-left: 50px;
+                margin-top: 30px;
+                h3{
+                    font-size: 26px;
+                    margin-bottom: 20px;
+                }
+                .main_wrapper{
+                    display: flex;
+                    flex-direction: row;
+                    overflow-x: scroll;
+                    gap: 30px;
+                    &:-webkit-scrollbar{
+                        visibility: hidden;
+                    }
+                }
+                .movie_card{
+                    width: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    flex: 0 0 auto;
+                    margin-right: 10px;
+                    gap: 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    padding: 10px;
+                    button {
+                        padding: 10px;
+                        background-color: rgb(181, 40, 40);
+                        color: #fff;
+                        border-radius: 3px;
+                        border: none;
+                      }
+                      h4 {
+                        font-size: 22px;
+                      }
+                      img {
+                        border-radius: 3px;
+                      }
+                }
+            }
+        }
+    }
+}

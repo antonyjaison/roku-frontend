@@ -22,6 +22,7 @@ export default {
         console.error(error);
       }
     },
+    
   },
   template: `
       <div class="kids_wrapper">
