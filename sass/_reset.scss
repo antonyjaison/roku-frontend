@@ -1,0 +1,28 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: hsl(256, 29%, 20%);
+  color: white;
+  height: 100vh;
+  position: relative;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+}
